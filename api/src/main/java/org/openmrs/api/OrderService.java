@@ -551,6 +551,20 @@ public interface OrderService extends OpenmrsService {
 	@Authorized(PrivilegeConstants.MANAGE_ORDER_FREQUENCIES)
 	public OrderFrequency saveOrderFrequency(OrderFrequency orderFrequency) throws APIException;
 	
+    /**
+     * Creates or updates the given order frequency in the database
+     * 
+     * @param orderFrequency the order frequency to save
+     * @param checkInUse if order frequency existence must be checked
+     * @return the order frequency created/saved
+     * @since 1.10
+     * @should add a new order frequency to the database
+     * @should edit an existing order frequency that is not in use
+     * @should not allow editing an existing order frequency that is in use
+     */
+    @Authorized(PrivilegeConstants.MANAGE_ORDER_FREQUENCIES)
+    public OrderFrequency saveOrderFrequency(OrderFrequency orderFrequency, boolean checkInUse) throws APIException;
+    
 	/**
 	 * Retires the given order frequency in the database
 	 * 
